@@ -27,34 +27,34 @@ for n, c in zip(nomes, cords):
     nome = Label(janela, text=n, font=design['fonte2'], fg=design['preto'])
     nome.grid(column=1, row=c)
 
-entrada_tipo = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
-entrada_id = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
+entrada_tipo       = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
+entrada_id         = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
 entrada_Fabricante = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
-entrada_Voltagem = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
-entrada_Number = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
-entrada_Tamanho = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
-entrada_medida = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
-entrada_Material = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
-entrada_reserva = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
+entrada_Voltagem   = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
+entrada_Number     = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
+entrada_Tamanho    = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
+entrada_medida     = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
+entrada_Material   = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
+entrada_reserva    = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'])
 
-entradas = (entrada_tipo,
-            entrada_id,
-            entrada_Fabricante,
-            entrada_Voltagem,
-            entrada_Number,
-            entrada_Tamanho,
-            entrada_medida,
-            entrada_Material,
-            entrada_reserva,)
+entradas_f = (entrada_tipo,
+              entrada_id,
+              entrada_Fabricante,
+              entrada_Voltagem,
+              entrada_Number,
+              entrada_Tamanho,
+              entrada_medida,
+              entrada_Material,
+              entrada_reserva,)
 
-for e, c in zip(entradas, cords):
+for e, c in zip(entradas_f, cords):
     e.grid(column=2, row=c)
 
 def cadastro():
     banco = sqlite3.connect('Central-Ferramentas.db')
     cursor = banco.cursor()
 
-    pegar_entradas = [ent.get() for ent in entradas]
+    pegar_entradas = [ent.get() for ent in entradas_f]
     cursor.execute("INSERT OR IGNORE INTO ferramentas VALUES (?,?,?,?,?,?,?,?,?)", pegar_entradas)
 
     banco.commit()
