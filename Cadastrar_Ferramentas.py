@@ -15,7 +15,7 @@ janela = Tk()
 titulo = Label(janela, text='Cadastrar Ferramenta', font=design['fonte1'], fg=design['laranja1'])
 titulo.grid(column=0, row=0, columnspan=2, pady=10)
 
-nomes = ('Tipo de ferramenta :',
+nomes = ('Descrição:',
          'ID da ferramenta :',
          'Fabricante :',
          'Voltagem de uso:',
@@ -23,7 +23,7 @@ nomes = ('Tipo de ferramenta :',
          'Tamanho :',
          'Unidade de medida :',
          'Material da ferramenta :',
-         'Máximo de reserva :',)
+         'tipo da ferramenta :',)
 
 cords_y =(range(1, len(nomes) + 1))
 
@@ -31,7 +31,9 @@ for n, c in zip(nomes, cords_y):
     nome = Label(janela, text=n, font=design['fonte2'], fg=design['preto'],)
     nome.grid(column=0, row=c,sticky=W,pady=design['y_dist'],padx=design['x_dist'])
 
-entrada_tipo       = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
+
+
+entrada_descricao  = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
 entrada_id         = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
 entrada_Fabricante = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
 entrada_Voltagem   = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
@@ -39,9 +41,9 @@ entrada_Number     = Entry(janela, font=design['fonte2'], fg=design['preto'], re
 entrada_Tamanho    = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
 entrada_medida     = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
 entrada_Material   = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
-entrada_reserva    = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
+entrada_tipo       = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
 
-entradas_f = (entrada_tipo,
+entradas_f = (entrada_descricao,
               entrada_id,
               entrada_Fabricante,
               entrada_Voltagem,
@@ -49,7 +51,8 @@ entradas_f = (entrada_tipo,
               entrada_Tamanho,
               entrada_medida,
               entrada_Material,
-              entrada_reserva,)
+              entrada_tipo,)
+
 
 for e, c in zip(entradas_f, cords_y):
     e.grid(column=1, row=c,padx=design['x_dist'],pady=design['y_dist'])
@@ -59,11 +62,12 @@ def cadastro():
     cursor = banco.cursor()
 
     pegar_entradas = [ent.get() for ent in entradas_f]
-    cursor.execute("INSERT OR IGNORE INTO ferramentas VALUES (?,?,?,?,?,?,?,?,?)", pegar_entradas)
+    quant_valores = '?,'*len(entradas_f)
+    cursor.execute(f"INSERT OR IGNORE INTO ferramentas VALUES ({quant_valores})", pegar_entradas)
 
     banco.commit()
     banco.close()
-    print(f'Ferramenta {entrada_tipo.get()} cadastrada')
+    print(f'Ferramenta {entrada_descricao.get()} cadastrada')
 
 cadastrar = Button(janela, text='Enviar', command=cadastro, font=design['fonte2'], fg=design['laranja1'],
                    relief=design['relif'])

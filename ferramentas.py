@@ -8,24 +8,35 @@ cursor = banco.cursor()
 tabela = 'ferramentas'
 elementos = '*'
 cursor.execute(f"SELECT {elementos} FROM {tabela} " )
+
 colunas_nomes= [nome[0] for nome in cursor.description]
 valores = cursor.fetchall()
 
 janela = Tk()
-tecnicos = ttk.Treeview(janela)
-tecnicos['columns'] = colunas_nomes
-tecnicos.column('#0', width=1)
+
+ferramentas = ttk.Treeview(janela, selectmode='browse')
+
+
+vsb = ttk.Scrollbar(janela, orient="vertical", command=ferramentas.yview)
+vsb.pack(side='right', fill='y')
+ferramentas.configure(yscrollcommand=vsb.set)
+
+
+ferramentas['columns'] = colunas_nomes
+
+ferramentas.column('#0', width=40)# coluna de index
 
 # criando colunas
 for nome in colunas_nomes:
-    tecnicos.column(nome, width=100)
-    tecnicos.heading(nome,text=nome)
+    ferramentas.column(nome, width=100, anchor=CENTER)
+    ferramentas.heading(nome, text=nome)
 
 # inserindo varlores
-for v in valores:
-    tecnicos.insert('','end', text='', values=v)
 
-tecnicos.pack()
+ids = range(len(valores))
+for v,i in zip(valores,ids):
+    ferramentas.insert('', 'end', text=i, values=v)
+ferramentas.pack()
 
 
 
