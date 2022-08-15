@@ -62,7 +62,7 @@ def cadastro():
     cursor = banco.cursor()
 
     pegar_entradas = [ent.get() for ent in entradas_f]
-    quant_valores = '?,'*len(entradas_f)
+    quant_valores = '?,' * (len(entradas_f) - 1) + '?'
     cursor.execute(f"INSERT OR IGNORE INTO ferramentas VALUES ({quant_valores})", pegar_entradas)
 
     banco.commit()

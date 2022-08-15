@@ -55,8 +55,9 @@ def cadastro():
     cursor = banco.cursor()
 
     pegar_entradas = [ent.get() for ent in entradas_t]
-    quant_valores = '?,' * len(entradas_t)
-    cursor.execute(f"INSERT OR IGNORE INTO ferramentas VALUES ({quant_valores})", pegar_entradas)
+
+    quant_valores = '?,' * (len(entradas_t) - 1) + '?'
+    cursor.execute(f"INSERT OR IGNORE INTO técnicos VALUES ({quant_valores})", pegar_entradas)
 
     banco.commit()
     banco.close()
@@ -66,5 +67,6 @@ def cadastro():
 cadastrar = Button(janela, text='Enviar', command=cadastro, font=design['fonte2'], fg=design['laranja1'],
                    relief=design['relif'])
 cadastrar.grid(column=0, row=len(nomes)+1, columnspan=2, pady=10)
+
 
 janela.mainloop()
