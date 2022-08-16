@@ -16,7 +16,6 @@ titulo = Label(janela, text='Cadastrar Ferramenta', font=design['fonte1'], fg=de
 titulo.grid(column=0, row=0, columnspan=2, pady=10)
 
 nomes = ('Descrição:',
-         'ID da ferramenta :',
          'Fabricante :',
          'Voltagem de uso:',
          'Part Number :',
@@ -44,7 +43,6 @@ entrada_Material   = Entry(janela, font=design['fonte2'], fg=design['preto'], re
 entrada_tipo       = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
 
 entradas_f = (entrada_descricao,
-              entrada_id,
               entrada_Fabricante,
               entrada_Voltagem,
               entrada_Number,
@@ -61,9 +59,10 @@ def cadastro():
     banco = sqlite3.connect('Central-Ferramentas.db')
     cursor = banco.cursor()
 
-    pegar_entradas = [ent.get() for ent in entradas_f]
-    quant_valores = '?,' * (len(entradas_f) - 1) + '?'
-    cursor.execute(f"INSERT OR IGNORE INTO ferramentas VALUES ({quant_valores})", pegar_entradas)
+    pegar_entradas = [ent.get() for ent in entradas_f]+[None]
+
+    quant_valores = '?,' * len(entradas_f) + '?'
+    cursor.execute(f"INSERT OR IGNORE INTO ferramentas VALUES({quant_valores})", (pegar_entradas))
 
     banco.commit()
     banco.close()

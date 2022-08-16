@@ -12,7 +12,7 @@ elementos = 'Nome,Contato,Email,Turno,Equipe,Id'
 cursor.execute(f"SELECT {elementos} FROM {tabela} " )
 
 #pegando valores
-colunas_nomes= [nome[0] for nome in cursor.description]
+colunas_nomes= [nome[0] for nome in cursor.description]#retorna o nome de cada coluna
 valores = cursor.fetchall()
 
 #criando janela e treeview
@@ -26,30 +26,36 @@ vsb = ttk.Scrollbar(janela, orient="vertical", command=tecnicos.yview)
 vsb.pack(side='right', fill='y')
 tecnicos.configure(yscrollcommand=vsb.set)
 
-# criando colunas
+# inserindo varlores nas colunas
+
 for nome in colunas_nomes:
     tecnicos.column(nome, anchor=CENTER,width=150)
     tecnicos.heading(nome,text=nome)
 
-# inserindo varlores
 ids = range(len(valores))
-for v,i in zip(valores,ids):
+for v,i in zip(valores,ids): #numero da linha
     tecnicos.insert('','end', text=i, values=v)
 
+#funcionalidades
 
 def excluir():
-    selecionar = tecnicos.selection()[0]
-    selecionado = tecnicos.item(selecionar,'values')
-    msg = messagebox.askquestion('deletar', f"Deletar {selecionado[0].upper()}, ID: {selecionado[-1]} ? ")
-    if msg == 'yes':
-        cursor.execute(f"DELETE from técnicos WHERE Id='{selecionado[-1]}' ")
-        tecnicos.delete(selecionar)
-        banco.commit()
+    try:
+        selecionar = tecnicos.selection()[0]
+        selecionado = tecnicos.item(selecionar,'values')
+        msg = messagebox.askquestion('deletar', f"Deletar {selecionado[0].upper()}, ID: {selecionado[-1]} ? ")
+        if msg == 'yes':
+            cursor.execute(f"DELETE from técnicos WHERE Id='{selecionado[-1]}' ")
+            tecnicos.delete(selecionar)
+            banco.commit()
+    except IndexError:
+        erro = messagebox.showinfo('Erro','Selecione um item')
 
 
 excluir_t = Button(janela,text='excluir',command=excluir)
 
+
+#posicionamento
+
 tecnicos.pack()
 excluir_t.pack()
-
 janela.mainloop()
