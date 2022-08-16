@@ -54,10 +54,11 @@ def cadastro():
     banco = sqlite3.connect('Central-Ferramentas.db')
     cursor = banco.cursor()
 
-    pegar_entradas = [ent.get() for ent in entradas_t]
 
-    quant_valores = '?,' * (len(entradas_t) - 1) + '?'
-    cursor.execute(f"INSERT OR IGNORE INTO técnicos VALUES ({quant_valores})", pegar_entradas)
+    pegar_entradas = [ent.get() for ent in entradas_t]+[None]
+
+    quant_valores = '?,' * len(entradas_t) + '?'
+    cursor.execute(f"INSERT OR IGNORE INTO técnicos VALUES ({quant_valores}) ", (pegar_entradas))
 
     banco.commit()
     banco.close()

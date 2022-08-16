@@ -16,7 +16,6 @@ janela = Tk()
 
 ferramentas = ttk.Treeview(janela, selectmode='browse')
 
-
 vsb = ttk.Scrollbar(janela, orient="vertical", command=ferramentas.yview)
 vsb.pack(side='right', fill='y')
 ferramentas.configure(yscrollcommand=vsb.set)
@@ -37,10 +36,5 @@ ids = range(len(valores))
 for v,i in zip(valores,ids):
     ferramentas.insert('', 'end', text=i, values=v)
 ferramentas.pack()
-
-
-
-
-
 
 janela.mainloop()
