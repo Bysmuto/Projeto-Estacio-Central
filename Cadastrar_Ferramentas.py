@@ -31,7 +31,6 @@ for n, c in zip(nomes, cords_y):
     nome.grid(column=0, row=c,sticky=W,pady=design['y_dist'],padx=design['x_dist'])
 
 
-
 entrada_descricao  = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
 entrada_id         = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
 entrada_Fabricante = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])

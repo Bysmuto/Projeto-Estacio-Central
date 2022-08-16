@@ -53,7 +53,6 @@ def excluir():
 
 excluir_t = Button(janela,text='excluir',command=excluir)
 
-
 #posicionamento
 
 tecnicos.pack()

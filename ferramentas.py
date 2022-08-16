@@ -35,7 +35,6 @@ ids = range(len(valores))
 for v,i in zip(valores,ids):#numero das linhas
     ferramentas.insert('', 'end', text=i, values=v)
 
-
 #funcionalidades
 
 def excluir():

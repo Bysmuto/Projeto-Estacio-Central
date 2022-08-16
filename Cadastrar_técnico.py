@@ -54,7 +54,6 @@ def cadastro():
     banco = sqlite3.connect('Central-Ferramentas.db')
     cursor = banco.cursor()
 
-
     pegar_entradas = [ent.get() for ent in entradas_t]+[None]
 
     quant_valores = '?,' * len(entradas_t) + '?'
