@@ -18,12 +18,12 @@ def casdastro_ferramenta():
 
     nomes = ('Descrição:',
              'Fabricante :',
-             'Voltagem de uso:',
+             'Voltagem :',
              'Part Number :',
              'Tamanho :',
-             'Unidade de medida :',
-             'Material da ferramenta :',
-             'tipo da ferramenta :',)
+             'Medida :',
+             'Material :',
+             'Tipo :',)
 
     cords_y =(range(1, len(nomes) + 1))
 
