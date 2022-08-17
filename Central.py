@@ -17,7 +17,16 @@ dsn = {   'fonte1': 'Franklin 25 bold',
           'x_dist': 20,         }
 
 janela = Tk()
-janela.geometry('520x300+400+150')
+# centralizando a tela
+janela_altura = 300
+janela_largura = 500
+tela_larg = janela.winfo_screenwidth()
+tela_alt = janela.winfo_screenheight()
+x = int((tela_larg / 2) - (janela_largura / 2))
+y = int((tela_alt / 2) - (janela_altura / 2))
+janela.geometry(f"{janela_largura}x{janela_altura}+{x}+{y}")
+janela.resizable(False, False)
+
 janela.config(bg=dsn['branco'])
 
 titulo = Label(janela, text='Central Ferramentas', font=dsn['fonte1'], bg=dsn['branco'], fg=dsn['laranja1'])
@@ -28,12 +37,6 @@ b_ferramentas.grid(column=1,row=2,pady=dsn['y_dist'])
 
 b_tecnicos = Button(janela,text='Técnicos',command=tecnicos, font=dsn['fonte2'], bg=dsn['laranja1'], fg=dsn['branco2'], relief=dsn['relif'])
 b_tecnicos.grid(column=2,row=2,pady=dsn['y_dist'])
-
-b_c_tecnicos = Button(janela,text=' Cadastar Técnico',command=cadastro_tecnico, font=dsn['fonte3'], bg=dsn['laranja1'], fg=dsn['branco2'], relief=dsn['relif'])
-b_c_tecnicos.grid(column=2,row=3,pady=dsn['y_dist'])
-
-b_c_ferramenta = Button(janela,text=' Cadastar Ferramenta',command=casdastro_ferramenta, font=dsn['fonte3'], bg=dsn['laranja1'], fg=dsn['branco2'], relief=dsn['relif'])
-b_c_ferramenta.grid(column=1,row=3,pady=dsn['y_dist'])
 
 
 janela.mainloop()
