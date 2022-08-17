@@ -13,6 +13,7 @@ def ferramentas():
 
     colunas_nomes= [nome[0] for nome in cursor.description]
     valores = cursor.fetchall()
+    # print(valores)
 
     janela = Tk()
 
@@ -54,11 +55,12 @@ def ferramentas():
 
         try:
 
-            selecionar = ferramentas.selection()[0]
-            selecionado = ferramentas.item(selecionar, 'values')
-
             def janela2():
-                design = {'fonte1': 'Arial 20',
+
+                selecionar = ferramentas.selection()[0]
+                selecionado = ferramentas.item(selecionar, 'values')
+                print(selecionado)
+                dsn = {'fonte1': 'Arial 20',
                           'fonte2': 'Arial 14',
                           'laranja1': '#F76A57',
                           'preto': '#2e2e2d',
@@ -69,7 +71,7 @@ def ferramentas():
 
                 janela = Tk()
 
-                titulo = Label(janela, text='Modificar Ferramenta', font=design['fonte1'], fg=design['laranja1'])
+                titulo = Label(janela, text=' Modificar Ferramenta', font=dsn['fonte1'], fg=dsn['laranja1'])
                 titulo.grid(column=0, row=0, columnspan=2, pady=10)
 
                 nomes = ('Descrição:',
@@ -84,27 +86,25 @@ def ferramentas():
                 cords_y = (range(1, len(nomes) + 1))
 
                 for n, c in zip(nomes, cords_y):
-                    nome = Label(janela, text=n, font=design['fonte2'], fg=design['preto'], )
-                    nome.grid(column=0, row=c, sticky=W, pady=design['y_dist'], padx=design['x_dist'])
+                    nome = Label(janela, text=n, font=dsn['fonte2'], fg=dsn['preto'], )
+                    nome.grid(column=0, row=c, sticky=W, pady=dsn['y_dist'], padx=dsn['x_dist'])
 
-                entrada_descricao = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
-                                          bg=design['laranja2'])
-                entrada_id = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
-                                   bg=design['laranja2'])
-                entrada_Fabricante = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
-                                           bg=design['laranja2'])
-                entrada_Voltagem = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
-                                         bg=design['laranja2'])
-                entrada_Number = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
-                                       bg=design['laranja2'])
-                entrada_Tamanho = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
-                                        bg=design['laranja2'])
-                entrada_medida = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
-                                       bg=design['laranja2'])
-                entrada_Material = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
-                                         bg=design['laranja2'])
-                entrada_tipo = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
-                                     bg=design['laranja2'])
+                entrada_descricao = Entry(janela, font=dsn['fonte2'], fg=dsn['preto'], relief=dsn['relif'], bg=dsn['laranja2'])
+                entrada_descricao.insert(0,selecionado[0])
+
+                entrada_Fabricante = Entry(janela, font=dsn['fonte2'], fg=dsn['preto'], relief=dsn['relif'], bg=dsn['laranja2'])
+
+                entrada_Voltagem = Entry(janela, font=dsn['fonte2'], fg=dsn['preto'], relief=dsn['relif'], bg=dsn['laranja2'])
+
+                entrada_Number = Entry(janela, font=dsn['fonte2'], fg=dsn['preto'], relief=dsn['relif'], bg=dsn['laranja2'])
+
+                entrada_Tamanho = Entry(janela, font=dsn['fonte2'], fg=dsn['preto'], relief=dsn['relif'],bg=dsn['laranja2'])
+
+                entrada_medida = Entry(janela, font=dsn['fonte2'], fg=dsn['preto'], relief=dsn['relif'],bg=dsn['laranja2'])
+
+                entrada_Material = Entry(janela, font=dsn['fonte2'], fg=dsn['preto'], relief=dsn['relif'],bg=dsn['laranja2'])
+
+                entrada_tipo = Entry(janela, font=dsn['fonte2'], fg=dsn['preto'], relief=dsn['relif'],bg=dsn['laranja2'])
 
                 entradas_f = (entrada_descricao,
                               entrada_Fabricante,
@@ -115,8 +115,11 @@ def ferramentas():
                               entrada_Material,
                               entrada_tipo,)
 
+                for e,i in zip(entradas_f,selecionado):
+                    e.insert(0,i)
+
                 for e, c in zip(entradas_f, cords_y):
-                    e.grid(column=1, row=c, padx=design['x_dist'], pady=design['y_dist'])
+                    e.grid(column=1, row=c, padx=dsn['x_dist'], pady=dsn['y_dist'])
 
                 def enviar():
 
@@ -133,8 +136,8 @@ def ferramentas():
                     janela.destroy()
                     print(f'Ferramenta {selecionado[-1]} modificada')
 
-                cadastrar = Button(janela, text='Enviar', command=enviar, font=design['fonte2'], fg=design['laranja1'],relief=design['relif'])
-                cadastrar.grid(column=0, row=len(nomes) + 1, columnspan=2, pady=design['y_dist'])
+                cadastrar = Button(janela, text='Enviar', command=enviar, font=dsn['fonte2'], fg=dsn['laranja1'], relief=dsn['relif'])
+                cadastrar.grid(column=0, row=len(nomes) + 1, columnspan=2, pady=dsn['y_dist'])
 
 
                 janela.mainloop()
