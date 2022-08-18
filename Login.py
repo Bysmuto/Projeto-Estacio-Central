@@ -26,7 +26,7 @@ tela_alt = login.winfo_screenheight()
 x = int((tela_larg / 2) - (janela_largura / 2))
 y = int((tela_alt / 2.5) - (janela_altura / 2))
 login.geometry(f"{janela_largura}x{janela_altura}+{x}+{y}")
-login.configure(bg=dsn['branco3'])
+login.configure()
 login.resizable(False, False)
 
 
@@ -49,17 +49,17 @@ def entrar():
     except :
         print(f'Erro verficar entrar')
 
-titulo = Label(login,text='Bem vindo a Central',font=dsn['fonte1'],fg=dsn['laranja1'],bg=dsn['branco3'])
+titulo = Label(login,text='Bem vindo a Central',font=dsn['fonte1'],fg=dsn['laranja1'],)
 
-email= Label(login, text='E-mail :  ', font=dsn['fonte2'],fg=dsn['preto'],bg=dsn['branco3'])
+email= Label(login, text='E-mail :  ', font=dsn['fonte2'],fg=dsn['preto'])
 entrada_email = Entry(login, font=dsn['fonte2'], relief=dsn['relif'],width=18)
 
-senha=  Label(login,text='Senha :  ',font=dsn['fonte2'],bg=dsn['branco3'])
+senha=  Label(login,text='Senha :  ',font=dsn['fonte2'],)
 entrada_senha= Entry(login,font=dsn['fonte2'],relief=dsn['relif'],width=18)
 
 entrar_b = Button(login, text='Entrar',command=entrar,font=dsn['fonte2'],fg=dsn['branco'],bg=dsn['laranja1'],relief=dsn['relif'])
 
-info= Label(login,text='Ainda não tem um cadastro? ',font='arial 12',bg=dsn['branco3'])
+info= Label(login,text='Ainda não tem um cadastro? ',font='arial 12')
 
 cadastro = Button(login,text='Cadastre-se',command=cadastro_tecnico,font=dsn['fonte3'],fg=dsn['branco'],bg=dsn['laranja1'],relief=dsn['relif'])
 

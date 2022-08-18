@@ -20,7 +20,7 @@ dsn = {   'fonte1': 'Franklin 25 bold',
 def ferramentas():
 
     janela_f = Tk()
-    janela_f.configure(bg=dsn['branco'])
+    janela_f.configure()
     estilo = ttk.Style()
     estilo.configure("Treeview.Heading", font=(dsn['fonte2'], 13, 'bold'), foreground=dsn['laranja1'],)
     estilo.configure("Treeview", highlightthickness=100, bd=100, font=('Calibri', 12,))
@@ -56,7 +56,6 @@ def ferramentas():
 
     #barra de rolagem
     rolagem = ttk.Scrollbar(janela_f, orient="vertical", command=ferramentas.yview)
-
     ferramentas.configure(yscrollcommand=rolagem.set)
 
     # inserindo valores na Tabela do tk
@@ -177,7 +176,7 @@ def ferramentas():
             erro = messagebox.showinfo('Erro', 'Selecione um item')
 
 
-    titulo_f = Label(janela_f,text='Ferramentas cadastradas',font=dsn['fonte1'],bg=dsn['branco2'],fg=dsn['preto'])
+    titulo_f = Label(janela_f,text='Ferramentas cadastradas',font=dsn['fonte1'],fg=dsn['laranja1'])
     cadastar_f = Button(janela_f, text='Nova Ferramenta', command=casdastro_ferramenta,bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
     excluir_f = Button(janela_f, text='Excluir', command=excluir,bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
     modificar_f = Button(janela_f, text='Modificar', command=modificar,bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])

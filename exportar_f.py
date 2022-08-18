@@ -5,6 +5,8 @@ from os import startfile
 banco = sqlite3.connect('Central-Ferramentas.db')
 cursor = banco.cursor()
 
+
+
 # itens da tabela
 tabela = 'ferramentas'
 elementos = '*'
@@ -22,5 +24,3 @@ def exportar_f():
         print('arquivo não encontrado')
         pass
 
-if __name__=='__main__':
-    exportar_f()
