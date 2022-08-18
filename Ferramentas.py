@@ -2,12 +2,29 @@ from tkinter import	*
 from tkinter import ttk
 from tkinter import messagebox
 from Cadastrar_Ferramentas import casdastro_ferramenta
-from exportar import exportar
+from exportar_f import exportar_f
 import sqlite3
+dsn = {   'fonte1': 'Franklin 25 bold',
+          'fonte4': 'Franklin 14 bold',
+          'fonte2': 'Yu 15',
+          'fonte3': 'Arial 12',
+          'laranja1': '#F76A57',
+          'preto': '#2e2e2d',
+          'branco':'#fafafa',
+          'branco2': 'white',
+          'laranja2': '#F4D9D7',
+          'relif': FLAT,
+          'y_dist': 10,
+          'x_dist': 20,         }
 
 def ferramentas():
 
     janela_f = Tk()
+    janela_f.configure(bg=dsn['branco'])
+    estilo = ttk.Style()
+    estilo.configure("Treeview.Heading", font=(dsn['fonte2'], 13, 'bold'), foreground=dsn['laranja1'],)
+    estilo.configure("Treeview", highlightthickness=100, bd=100, font=('Calibri', 12,))
+    estilo.map('Treeview', background=[(' selected', dsn['laranja1'])])
 
     #centralizando a tela
     janela_altura = 400
@@ -15,7 +32,7 @@ def ferramentas():
     tela_larg = janela_f.winfo_screenwidth()
     tela_alt = janela_f.winfo_screenheight()
     x = int((tela_larg / 2) - (janela_largura / 2))
-    y = int((tela_alt / 2) - (janela_altura / 2))
+    y = int((tela_alt / 2.5) - (janela_altura / 2))
     janela_f.geometry(f"{janela_largura}x{janela_altura}+{x}+{y}")
     janela_f.resizable(False, False)
 
@@ -31,14 +48,16 @@ def ferramentas():
     valores = cursor.fetchall()
 
     #Tabela do Tk
-    ferramentas = ttk.Treeview(janela_f, selectmode='browse')
+
+
+    ferramentas = ttk.Treeview(janela_f, selectmode='browse',)
     ferramentas['columns'] = colunas_nomes
     ferramentas.column('#0', width=40)# coluna de index
 
     #barra de rolagem
-    vsb = ttk.Scrollbar(janela_f, orient="vertical", command=ferramentas.yview)
-    vsb.pack(side='right', fill='y')
-    ferramentas.configure(yscrollcommand=vsb.set)
+    rolagem = ttk.Scrollbar(janela_f, orient="vertical", command=ferramentas.yview)
+
+    ferramentas.configure(yscrollcommand=rolagem.set)
 
     # inserindo valores na Tabela do tk
     for nome in colunas_nomes:
@@ -157,16 +176,25 @@ def ferramentas():
         except IndexError:
             erro = messagebox.showinfo('Erro', 'Selecione um item')
 
-    cadastar_f = Button(janela_f, text='Nova Ferramenta', command=casdastro_ferramenta)
-    excluir_f = Button(janela_f, text='Excluir', command=excluir)
-    modificar_f = Button(janela_f, text='Modificar', command=modificar)
-    exportar_f =Button(janela_f, text='Exportar', command=exportar)
 
-    ferramentas.pack()
-    cadastar_f.pack()
-    excluir_f.pack()
-    modificar_f.pack()
-    exportar_f.pack()
+    titulo_f = Label(janela_f,text='Ferramentas cadastradas',font=dsn['fonte1'],bg=dsn['branco2'],fg=dsn['preto'])
+    cadastar_f = Button(janela_f, text='Nova Ferramenta', command=casdastro_ferramenta,bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
+    excluir_f = Button(janela_f, text='Excluir', command=excluir,bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
+    modificar_f = Button(janela_f, text='Modificar', command=modificar,bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
+    exportar_f_ =Button(janela_f, text='Exportar', command=exportar_f,bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
+
+
+    #posicionamento
+    titulo_f.grid(columnspan=5,column=1,rowspan=3,row=0,)
+    ferramentas.grid(columnspan=5,column=1,rowspan=3,row=3,padx=20,pady=20)
+    rolagem.place(in_=ferramentas,relx=1,rely=0,relheight=1)
+
+
+    y = 310
+    cadastar_f.place(x=165,y=y)
+    modificar_f.place(x=385,y=y)
+    excluir_f.place(x=535,y=y)
+    exportar_f_.place(x=665,y=y)
 
     janela_f.mainloop()
 

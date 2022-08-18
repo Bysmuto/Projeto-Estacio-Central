@@ -1,6 +1,7 @@
 from tkinter import	*
 from tkinter import ttk
 from tkinter import messagebox
+from exportar_t import exportar_t
 import sqlite3
 
 def tecnicos():
@@ -52,12 +53,12 @@ def tecnicos():
             erro = messagebox.showinfo('Erro','Selecione um item')
 
 
-    excluir_t = Button(janela,text='excluir',command=excluir)
+    exportar_t_ = Button(janela, text='Exportar', command=exportar_t)
 
     #posicionamento
 
     tecnicos.pack()
-    excluir_t.pack()
+    exportar_t_.pack()
     janela.mainloop()
 
 if __name__=='__main__':
