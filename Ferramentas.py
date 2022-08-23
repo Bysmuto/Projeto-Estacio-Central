@@ -169,10 +169,8 @@ def ferramentas_tabela():
             cursor.execute(f"DELETE from ferramentas WHERE Id='{selecionado[-1]}' ")
             ferramentas_tabela.delete(selecionar)
             banco.commit()
-
-
         except IndexError:
-            erro = messagebox.showinfo('Erro','Selecione um item')
+            print('Erro','Selecione um item')
 
     def modificar():
         try:

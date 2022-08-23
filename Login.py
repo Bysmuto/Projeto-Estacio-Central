@@ -13,7 +13,7 @@ dsn = {   'fonte1': 'Franklin 25 bold',
           'branco2': 'white',
           'laranja2': '#F4D9D7',
           'branco3':'#f5eae6',
-          'relif': FLAT,
+          'relif': 'groove',
           'y_dist': 10,
           'x_dist': 20,         }
 

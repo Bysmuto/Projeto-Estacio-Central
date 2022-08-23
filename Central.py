@@ -8,14 +8,14 @@ from centralizar import centralizar
 
 
 dsn = {   'fonte1': 'Franklin 25 bold',
-          'fonte2': 'Yu 25 roman',
+          'fonte2': 'Yu 25 ',
           'fonte3': 'Arial 12',
           'laranja1': '#F76A57',
           'preto': '#2e2e2d',
           'branco':'#fafafa',
           'branco2': 'white',
           'laranja2': '#F4D9D7',
-          'relif': FLAT,
+          'relif': 'groove',
           'y_dist': 10,
           'x_dist': 20,         }
 

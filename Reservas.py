@@ -65,15 +65,16 @@ def reservas_tabela():
         rolagem.place(in_=ferramentas_tabela, relx=1, rely=0, relheight=1)
     tabela()
 
-    titulo_r = Label(janela_r, text='Reservas cadastradas', font=dsn['fonte1'], fg=dsn['laranja1'])
+    titulo_r   = Label(janela_r, text='Reservas cadastradas', font=dsn['fonte1'], fg=dsn['laranja1'])
     cadastar_r = Button(janela_r, text='Reservar',command=casdastro_reserva ,fg=dsn['branco'] ,bg=dsn['laranja1'],relief=dsn['relif'], font=dsn['fonte4'],)
-    exportar_r =Button(janela_r, text='Exportar', command=lambda :exportar_f('Reservas','Reserva da Central'),bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
-
+    exportar_r = Button(janela_r, text='Exportar', command=lambda :exportar_f('Reservas','Reserva da Central'),bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
+    excluir_r  =  Button(janela_r, text='Excluir',command=excluir ,fg=dsn['branco'] ,bg=dsn['laranja1'],relief=dsn['relif'], font=dsn['fonte4'],)
 
     titulo_r.grid(columnspan=5, column=1, rowspan=3, row=0, )
     y = 310
     cadastar_r.place(x=340, y=y)
     exportar_r.place(x=540, y=y)
+    excluir_r.place(x=160, y=y)
 
 
     janela_r.mainloop()
@@ -102,9 +103,9 @@ def casdastro_reserva():
              'Id F :',
              'Técnico :',
              'Id T :',
-             'tempo :',
-             'inicio :',
-             'entrega :',
+             'Tempo :',
+             'Inicio :',
+             'Entrega :',
              )
 
     cords_y =(range(1, len(nomes) + 1))
@@ -118,9 +119,9 @@ def casdastro_reserva():
     IdF         = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
     Tecnico     = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
     IdT         = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
-    tempo    = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
-    inicio     = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
-    entrega   = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
+    tempo       = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
+    inicio      = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
+    entrega     = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
 
     entradas_f = (Ferramenta,
                   IdF,
@@ -164,6 +165,17 @@ def casdastro_reserva():
 
     janela.mainloop()
 
+def excluir():
+        try:
+            selecionar = ferramentas_tabela.selection()[0]
+            print(selecionar)
+            selecionado = ferramentas_tabela.item(selecionar, 'values')
+            print(selecionado)
+            cursor.execute(f"DELETE from Reservas WHERE IdF='{selecionado[1]}' ")
+            ferramentas_tabela.delete(selecionar)
+            banco.commit()
+        except IndexError:
+            print('Erro','Selecione um item')
 
 if __name__=='__main__':
     reservas_tabela()
