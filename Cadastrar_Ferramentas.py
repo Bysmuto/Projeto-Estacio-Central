@@ -84,4 +84,5 @@ def casdastro_ferramenta():
     janela.mainloop()
 
 if __name__=='__main__':
+    #erro é normal, so é possivel enviar usando todas as janelas
     casdastro_ferramenta()

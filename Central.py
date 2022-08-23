@@ -2,6 +2,8 @@ from tkinter import *
 from tkinter import ttk
 from Ferramentas import ferramentas_tabela
 from Técnicos import tecnicos
+from Reservas import reservas_tabela
+from centralizar import centralizar
 
 
 
@@ -21,17 +23,7 @@ def central():
     janela_p = Tk()
     janela_p.title('Central')
 
-
-    # centralizando a tela
-    janela_altura = 400
-    janela_largura = 450
-    tela_larg = janela_p.winfo_screenwidth()
-    tela_alt = janela_p.winfo_screenheight()
-    x = int((tela_larg / 2) - (janela_largura / 2))
-    y = int((tela_alt / 2.5) - (janela_altura / 2))
-    janela_p.geometry(f"{janela_largura}x{janela_altura}+{x}+{y}")
-    janela_p.resizable(False, False)
-
+    centralizar(janela_p,400,450)
 
     janela_p.config(bg=dsn['branco'])
 
@@ -45,7 +37,7 @@ def central():
     b_tecnicos = Button(janela_p, text='Técnicos', command=tecnicos, font=dsn['fonte1'], bg=dsn['laranja1'], fg=dsn['branco2'], relief=dsn['relif'])
     b_tecnicos.grid(column=1,row=3,pady=dsn['y_dist'])
 
-    b_reservas = Button(janela_p, text='Reservas', command=tecnicos, font=dsn['fonte1'], bg=dsn['laranja1'],fg=dsn['branco2'], relief=dsn['relif'])
+    b_reservas = Button(janela_p, text='Reservas', command=reservas_tabela, font=dsn['fonte1'], bg=dsn['laranja1'],fg=dsn['branco2'], relief=dsn['relif'])
     b_reservas.grid(column=1, row=4, pady=dsn['y_dist'])
 
 

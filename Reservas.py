@@ -2,6 +2,7 @@ from tkinter import	*
 from tkinter import ttk
 import sqlite3
 from centralizar import centralizar
+from exportar_f import exportar_f
 
 dsn = {   'fonte1': 'Franklin 25 bold',
           'fonte4': 'Franklin 14 bold',
@@ -16,8 +17,10 @@ dsn = {   'fonte1': 'Franklin 25 bold',
           'y_dist': 10,
           'x_dist': 20,         }
 
+
 def reservas_tabela():
 
+    global tabela
     janela_r = Tk()
     janela_r.title('Reservas')
     estilo = ttk.Style()
@@ -63,13 +66,104 @@ def reservas_tabela():
     tabela()
 
     titulo_r = Label(janela_r, text='Reservas cadastradas', font=dsn['fonte1'], fg=dsn['laranja1'])
-    cadastar_r = Button(janela_r, text='Reservar', fg=dsn['branco'] ,bg=dsn['laranja1'],relief=dsn['relif'], font=dsn['fonte4'],)
+    cadastar_r = Button(janela_r, text='Reservar',command=casdastro_reserva ,fg=dsn['branco'] ,bg=dsn['laranja1'],relief=dsn['relif'], font=dsn['fonte4'],)
+    exportar_r =Button(janela_r, text='Exportar', command=lambda :exportar_f('Reservas','Reserva da Central'),bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
+
 
     titulo_r.grid(columnspan=5, column=1, rowspan=3, row=0, )
     y = 310
     cadastar_r.place(x=340, y=y)
+    exportar_r.place(x=540, y=y)
+
 
     janela_r.mainloop()
+
+#funcionalidades
+
+def casdastro_reserva():
+
+    design = {'fonte1': 'Arial 25',
+              'fonte2': 'Arial 15',
+              'laranja1': '#F76A57',
+              'preto': '#2e2e2d',
+              'laranja2' : '#F4D9D7',
+              'relif': FLAT,
+              'y_dist':5,
+               'x_dist':10,}
+
+    janela = Tk()
+
+    centralizar(janela,400,400)
+
+    titulo = Label(janela, text='Cadastrar Reserva', font=design['fonte1'], fg=design['laranja1'])
+    titulo.grid(column=0, row=0, columnspan=2, pady=10,padx=10)
+
+    nomes = ('Ferramenta:',
+             'Id F :',
+             'Técnico :',
+             'Id T :',
+             'tempo :',
+             'inicio :',
+             'entrega :',
+             )
+
+    cords_y =(range(1, len(nomes) + 1))
+
+    for n, c in zip(nomes, cords_y):
+        nome = Label(janela, text=n, font=design['fonte2'], fg=design['preto'],)
+        nome.grid(column=0, row=c,sticky=W,pady=design['y_dist'],padx=design['x_dist'])
+
+
+    Ferramenta  = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
+    IdF         = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
+    Tecnico     = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
+    IdT         = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
+    tempo    = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
+    inicio     = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
+    entrega   = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
+
+    entradas_f = (Ferramenta,
+                  IdF,
+                  Tecnico,
+                  IdT,
+                  tempo,
+                  inicio,
+                  entrega,
+                  )
+
+
+    for e, c in zip(entradas_f, cords_y):
+        e.grid(column=1, row=c,padx=design['x_dist'],pady=design['y_dist'])
+
+    def cadastro():
+        banco = sqlite3.connect('Central-Ferramentas.db')
+        cursor = banco.cursor()
+
+        pegar_entradas = [ent.get() for ent in entradas_f]
+        print(pegar_entradas)
+
+        quant_valores = '?,' * (len(entradas_f)-1) + '?'
+        print(quant_valores)
+        cursor.execute(f"INSERT OR IGNORE INTO Reservas VALUES({quant_valores})", (pegar_entradas))
+
+        banco.commit()
+        banco.close()
+        print(f'Reserva {Ferramenta.get()} reservada')
+        janela.destroy()
+
+
+        # update na tabela
+        ferramentas_tabela.destroy()
+        tabela()
+
+
+    cadastrar = Button(janela, text='Enviar', command=cadastro, font=design['fonte2'], fg=design['laranja1'],
+                       relief=design['relif'])
+
+    cadastrar.grid(column=0, row=len(nomes)+1, columnspan=2, pady=design['y_dist'])
+
+    janela.mainloop()
+
 
 if __name__=='__main__':
     reservas_tabela()

@@ -276,7 +276,7 @@ def ferramentas_tabela():
     cadastar_f = Button(janela_f, text='Nova Ferramenta', command=casdastro_ferramenta,bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
     excluir_f = Button(janela_f, text='Excluir', command=excluir,bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
     modificar_f = Button(janela_f, text='Modificar', command=modificar,bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
-    exportar_f_ =Button(janela_f, text='Exportar', command=exportar_f,bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
+    exportar_f_ =Button(janela_f, text='Exportar', command=lambda :exportar_f('ferramentas','Ferramentas da Central'),bg=dsn['laranja1'],relief=dsn['relif'],font=dsn['fonte4'],fg=dsn['branco2'])
 
 
     #posicionamento
