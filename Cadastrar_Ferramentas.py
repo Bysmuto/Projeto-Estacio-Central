@@ -1,5 +1,6 @@
 from tkinter import *
 import sqlite3
+from centralizar import centralizar
 
 def casdastro_ferramenta():
 
@@ -14,17 +15,7 @@ def casdastro_ferramenta():
 
     janela = Tk()
 
-
-    # centralizando a tela
-    janela_altura = 410
-    janela_largura = 400
-    tela_larg = janela.winfo_screenwidth()
-    tela_alt = janela.winfo_screenheight()
-    x = int((tela_larg / 2.8) - (janela_largura / 2))
-    y = int((tela_alt / 2) - (janela_altura / 2))
-    janela.geometry(f"{janela_largura}x{janela_altura}+{x}+{y}")
-    janela.configure()
-    janela.resizable(False, False)
+    centralizar(janela,410,400)
 
     titulo = Label(janela, text='Cadastrar Ferramenta', font=design['fonte1'], fg=design['laranja1'])
     titulo.grid(column=0, row=0, columnspan=2, pady=10)

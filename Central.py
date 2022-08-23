@@ -19,6 +19,8 @@ dsn = {   'fonte1': 'Franklin 25 bold',
 
 def central():
     janela_p = Tk()
+    janela_p.title('Central')
+
 
     # centralizando a tela
     janela_altura = 400
@@ -35,13 +37,16 @@ def central():
 
 
     titulo = Label(janela_p, text='Central de Ferramentaria', font=dsn['fonte2'], bg=dsn['branco'], fg=dsn['laranja1'],)
-    titulo.grid(column=1,row=1,pady=40,padx=50,)
+    titulo.grid(column=1,row=1,pady=30,padx=50,)
 
     b_ferramentas = Button(janela_p, text='Ferramentas', command=ferramentas_tabela, font=dsn['fonte1'], bg=dsn['laranja1'], fg=dsn['branco2'], relief=dsn['relif'])
     b_ferramentas.grid(column=1,row=2,pady=dsn['y_dist'])
 
     b_tecnicos = Button(janela_p, text='Técnicos', command=tecnicos, font=dsn['fonte1'], bg=dsn['laranja1'], fg=dsn['branco2'], relief=dsn['relif'])
     b_tecnicos.grid(column=1,row=3,pady=dsn['y_dist'])
+
+    b_reservas = Button(janela_p, text='Reservas', command=tecnicos, font=dsn['fonte1'], bg=dsn['laranja1'],fg=dsn['branco2'], relief=dsn['relif'])
+    b_reservas.grid(column=1, row=4, pady=dsn['y_dist'])
 
 
     janela_p.mainloop()

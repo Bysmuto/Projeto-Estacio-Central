@@ -1,9 +1,10 @@
 from tkinter import	*
 from tkinter import ttk
-from tkinter import messagebox
 from Cadastrar_Ferramentas import casdastro_ferramenta
 from exportar_f import exportar_f
 import sqlite3
+from centralizar import centralizar
+
 dsn = {   'fonte1': 'Franklin 25 bold',
           'fonte4': 'Franklin 14 bold',
           'fonte2': 'Yu 15',
@@ -20,21 +21,13 @@ dsn = {   'fonte1': 'Franklin 25 bold',
 def ferramentas_tabela():
 
     janela_f = Tk()
-    janela_f.configure()
+    janela_f.title('Ferramentas')
     estilo = ttk.Style()
     estilo.configure("Treeview.Heading", font=(dsn['fonte2'], 13, 'bold'), foreground=dsn['laranja1'],)
     estilo.configure("Treeview", highlightthickness=100, bd=100, font=('Calibri', 12,))
     estilo.map('Treeview', background=[(' selected', dsn['laranja1'])])
 
-    #centralizando a tela
-    janela_altura = 400
-    janela_largura = 1000
-    tela_larg = janela_f.winfo_screenwidth()
-    tela_alt = janela_f.winfo_screenheight()
-    x = int((tela_larg / 2) - (janela_largura / 2))
-    y = int((tela_alt / 2.5) - (janela_altura / 2))
-    janela_f.geometry(f"{janela_largura}x{janela_altura}+{x}+{y}")
-    janela_f.resizable(False, False)
+    centralizar(janela_f,400,1000)
 
     def tabela():
         global ferramentas_tabela,cursor,banco,colunas_nomes,valores
@@ -288,9 +281,6 @@ def ferramentas_tabela():
 
     #posicionamento
     titulo_f.grid(columnspan=5,column=1,rowspan=3,row=0,)
-    # ferramentas.grid(columnspan=5,column=1,rowspan=3,row=3,padx=20,pady=20)
-    # rolagem.place(in_=ferramentas,relx=1,rely=0,relheight=1)
-
 
     y = 310
     cadastar_f.place(x=165,y=y)

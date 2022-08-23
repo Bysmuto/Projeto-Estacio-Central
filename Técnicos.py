@@ -33,6 +33,8 @@ def tecnicos():
 
     #criando janela e treeview
     janela = Tk()
+    janela.title('Técnicos')
+
     # centralizando a tela
     janela_altura = 400
     janela_largura = 1000

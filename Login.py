@@ -2,6 +2,7 @@ from tkinter import *
 import sqlite3
 from Cadastrar_técnico import cadastro_tecnico
 from Central import central
+from centralizar import centralizar
 
 dsn = {   'fonte1': 'Franklin 25 bold',
           'fonte2': 'Yu 15',
@@ -17,18 +18,9 @@ dsn = {   'fonte1': 'Franklin 25 bold',
           'x_dist': 20,         }
 
 login = Tk()
+login.title('Login Central')
 
-# centralizando a tela
-janela_altura = 350
-janela_largura = 400
-tela_larg = login.winfo_screenwidth()
-tela_alt = login.winfo_screenheight()
-x = int((tela_larg / 2) - (janela_largura / 2))
-y = int((tela_alt / 2.5) - (janela_altura / 2))
-login.geometry(f"{janela_largura}x{janela_altura}+{x}+{y}")
-login.configure()
-login.resizable(False, False)
-
+centralizar(login,350,400)
 
 def entrar():
     try:
