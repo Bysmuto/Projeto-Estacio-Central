@@ -79,16 +79,7 @@ def ferramentas_tabela():
 
         janela = Tk()
 
-        # centralizando a tela
-        janela_altura = 410
-        janela_largura = 400
-        tela_larg = janela.winfo_screenwidth()
-        tela_alt = janela.winfo_screenheight()
-        x = int((tela_larg / 2.8) - (janela_largura / 2))
-        y = int((tela_alt / 2) - (janela_altura / 2))
-        janela.geometry(f"{janela_largura}x{janela_altura}+{x}+{y}")
-        janela.configure()
-        janela.resizable(False, False)
+        centralizar(janela,410,400)
 
         titulo = Label(janela, text='Cadastrar Ferramenta', font=design['fonte1'], fg=design['laranja1'])
         titulo.grid(column=0, row=0, columnspan=2, pady=10)
@@ -98,7 +89,7 @@ def ferramentas_tabela():
                  'Voltagem :',
                  'Part Number :',
                  'Tamanho :',
-                 'Medida :',
+                 'Reserva max :',
                  'Material :',
                  'Tipo :',)
 
@@ -118,8 +109,8 @@ def ferramentas_tabela():
                                bg=design['laranja2'])
         entrada_Tamanho = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
                                 bg=design['laranja2'])
-        entrada_medida = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
-                               bg=design['laranja2'])
+        entrada_maxreserva = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
+                                   bg=design['laranja2'])
         entrada_Material = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
                                  bg=design['laranja2'])
         entrada_tipo = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],
@@ -130,7 +121,7 @@ def ferramentas_tabela():
                       entrada_Voltagem,
                       entrada_Number,
                       entrada_Tamanho,
-                      entrada_medida,
+                      entrada_maxreserva,
                       entrada_Material,
                       entrada_tipo,)
 
@@ -198,7 +189,7 @@ def ferramentas_tabela():
                          'Voltagem :',
                          'Part Number :',
                          'Tamanho :',
-                         'Medida :',
+                         'Reserva max :',
                          'Material :',
                          'Tipo :',)
 
@@ -209,7 +200,7 @@ def ferramentas_tabela():
                     nome.grid(column=0, row=c, sticky=W, pady=dsn['y_dist'], padx=dsn['x_dist'])
 
                 entrada_descricao = Entry(janela2, font=dsn['fonte2'], fg=dsn['preto'], relief=dsn['relif'], bg=dsn['laranja2'])
-                entrada_descricao.insert(0,selecionado[0])
+
 
                 entrada_Fabricante = Entry(janela2, font=dsn['fonte2'], fg=dsn['preto'], relief=dsn['relif'], bg=dsn['laranja2'])
 

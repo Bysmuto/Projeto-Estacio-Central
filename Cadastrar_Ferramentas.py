@@ -25,7 +25,7 @@ def casdastro_ferramenta():
              'Voltagem :',
              'Part Number :',
              'Tamanho :',
-             'Medida :',
+             'Tempo de reserva :',
              'Material :',
              'Tipo :',)
 
@@ -41,7 +41,7 @@ def casdastro_ferramenta():
     entrada_Voltagem   = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
     entrada_Number     = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
     entrada_Tamanho    = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
-    entrada_medida     = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
+    entrada_maxreserva = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
     entrada_Material   = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
     entrada_tipo       = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
 
@@ -50,7 +50,7 @@ def casdastro_ferramenta():
                   entrada_Voltagem,
                   entrada_Number,
                   entrada_Tamanho,
-                  entrada_medida,
+                  entrada_maxreserva,
                   entrada_Material,
                   entrada_tipo,)
 
