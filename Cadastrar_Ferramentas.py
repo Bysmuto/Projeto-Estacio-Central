@@ -2,6 +2,7 @@ from tkinter import *
 import sqlite3
 
 def casdastro_ferramenta():
+
     design = {'fonte1': 'Arial 20',
               'fonte2': 'Arial 14',
               'laranja1': '#F76A57',
@@ -12,6 +13,18 @@ def casdastro_ferramenta():
                'x_dist':10,}
 
     janela = Tk()
+
+
+    # centralizando a tela
+    janela_altura = 410
+    janela_largura = 400
+    tela_larg = janela.winfo_screenwidth()
+    tela_alt = janela.winfo_screenheight()
+    x = int((tela_larg / 2.8) - (janela_largura / 2))
+    y = int((tela_alt / 2) - (janela_altura / 2))
+    janela.geometry(f"{janela_largura}x{janela_altura}+{x}+{y}")
+    janela.configure()
+    janela.resizable(False, False)
 
     titulo = Label(janela, text='Cadastrar Ferramenta', font=design['fonte1'], fg=design['laranja1'])
     titulo.grid(column=0, row=0, columnspan=2, pady=10)
@@ -33,7 +46,6 @@ def casdastro_ferramenta():
 
 
     entrada_descricao  = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'])
-    entrada_id         = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
     entrada_Fabricante = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
     entrada_Voltagem   = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
     entrada_Number     = Entry(janela, font=design['fonte2'], fg=design['preto'], relief=design['relif'],bg=design['laranja2'])
@@ -67,6 +79,11 @@ def casdastro_ferramenta():
         banco.commit()
         banco.close()
         print(f'Ferramenta {entrada_descricao.get()} cadastrada')
+        janela.destroy()
+
+        # update na tabela
+        ferramentas_tabela.destroy()
+        tabela()
 
     cadastrar = Button(janela, text='Enviar', command=cadastro, font=design['fonte2'], fg=design['laranja1'],
                        relief=design['relif'])

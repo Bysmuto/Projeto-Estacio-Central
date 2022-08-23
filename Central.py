@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from Ferramentas import ferramentas
+from Ferramentas import ferramentas_tabela
 from Técnicos import tecnicos
 
 
@@ -37,7 +37,7 @@ def central():
     titulo = Label(janela_p, text='Central de Ferramentaria', font=dsn['fonte2'], bg=dsn['branco'], fg=dsn['laranja1'],)
     titulo.grid(column=1,row=1,pady=40,padx=50,)
 
-    b_ferramentas = Button(janela_p, text='Ferramentas', command=ferramentas, font=dsn['fonte1'], bg=dsn['laranja1'], fg=dsn['branco2'], relief=dsn['relif'])
+    b_ferramentas = Button(janela_p, text='Ferramentas', command=ferramentas_tabela, font=dsn['fonte1'], bg=dsn['laranja1'], fg=dsn['branco2'], relief=dsn['relif'])
     b_ferramentas.grid(column=1,row=2,pady=dsn['y_dist'])
 
     b_tecnicos = Button(janela_p, text='Técnicos', command=tecnicos, font=dsn['fonte1'], bg=dsn['laranja1'], fg=dsn['branco2'], relief=dsn['relif'])

@@ -43,6 +43,7 @@ def entrar():
         print(senha_bd,senha_digitada)
 
         if senha_digitada == senha_bd:
+            login.destroy()
             central()
         else:
             print('Erro na verificação,tente novamente')
