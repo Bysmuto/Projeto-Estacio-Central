@@ -12,4 +12,8 @@ Para utilizar e necessário apenas baixar o arquivo abaixo e garantir que o banc
 Download:
 https://downgit.github.io/#/home?url=https://github.com/Bysmuto/Projeto-Estacio-Central/tree/main/Central
 
+Video:
+https://youtu.be/kfzHly1Og4U
+
+
 A linguagem usada foi o python 3.10, com a biblioteca Tkinter para interface de usuário, Pandas para exportação de dados e SQlite como banco de dados
