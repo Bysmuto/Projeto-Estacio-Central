@@ -42,7 +42,10 @@ def cadastro_tecnico():
         nome.grid(column=0, row=c,sticky='w',pady=design['y_dist'],padx=design['x_dist'])
 
 
-    entrada_nome    = Entry(janela_ct, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'],width=15,)
+
+
+
+    entrada_nome    = Entry(janela_ct, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'],width=15)
     entrada_cpf     = Entry(janela_ct, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'],width=15)
     entrada_senha   = Entry(janela_ct, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'],width=15)
     entrada_email   = Entry(janela_ct, font=design['fonte2'], fg=design['preto'], relief=design['relif'], bg=design['laranja2'],width=15)

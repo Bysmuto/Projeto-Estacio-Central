@@ -16,12 +16,10 @@ dsn = {   'fonte1': 'Franklin 25 bold',
           'relif': 'groove',
           'y_dist': 10,
           'x_dist': 20,         }
-
 login = Tk()
 login.title('Login Central')
 
 centralizar(login,350,400)
-
 def entrar():
     try:
         # Banco
@@ -31,8 +29,6 @@ def entrar():
         senhas=    cursor.fetchall()
         senha_bd =senhas[0][0]
         senha_digitada = entrada_senha.get()
-
-        print(senha_bd,senha_digitada)
 
         if senha_digitada == senha_bd:
             login.destroy()
@@ -56,7 +52,6 @@ info= Label(login,text='Ainda não tem um cadastro? ',font='arial 12')
 
 cadastro = Button(login,text='Cadastre-se',command=cadastro_tecnico,font=dsn['fonte3'],fg=dsn['branco'],bg=dsn['laranja1'],relief=dsn['relif'])
 
-
 #posicionamento
 titulo.grid(columnspan=2,column=1,row=0,pady=20,padx=40)
 email.grid(column=1, row=1,pady=5,sticky='e')
@@ -66,5 +61,4 @@ entrada_senha.grid(column=2,row=2,pady=5,sticky='w')
 entrar_b.grid(column=1, row=3, columnspan=2,pady=10 )
 info.grid(column=1,row=4,columnspan=2,pady=10)
 cadastro.grid(column=1,row=5,columnspan=2,)
-
 login.mainloop()
